@@ -3076,7 +3076,7 @@ static void Cb_ReleaseMon(u8 taskId)
                 s8 r0 = RunCanReleaseMon();
                 if (r0 == 1)
                 {
-                    sPSSData->state++;
+                    sPSSData->state = 8;
                     break;
                 }
                 else if (r0 == 0)
