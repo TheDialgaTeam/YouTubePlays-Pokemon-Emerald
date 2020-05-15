@@ -2943,7 +2943,7 @@ static void Task_ReleaseMon(u8 taskId)
                 s8 canRelease = RunCanReleaseMon();
                 if (canRelease == TRUE)
                 {
-                    sStorage->state++;
+                    sStorage->state = 8;
                     break;
                 }
                 else if (!canRelease)
