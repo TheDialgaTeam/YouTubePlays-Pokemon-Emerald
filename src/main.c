@@ -118,6 +118,7 @@ void AgbMain()
     CheckForFlashMemory();
     InitMainCallbacks();
     InitMapMusic();
+    SeedRngWithRtc();
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
@@ -195,6 +196,13 @@ static void CallCallbacks(void)
 
     if (gMain.callback2)
         gMain.callback2();
+}
+
+static void SeedRngWithRtc(void)
+{
+    u32 seed = RtcGetMinuteCount();
+    seed = (seed >> 16) ^ (seed & 0xFFFF);
+    SeedRng(seed);
 }
 
 void SetMainCallback2(MainCallback callback)
