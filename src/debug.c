@@ -21,6 +21,7 @@ enum {
     DEBUG_MENU_ITEM_CANCEL,
 };
 
+static const u8 gDebugText_Release[] = _("Release Toggle");
 static const u8 gDebugText_Cancel[] = _("Cancel");
 
 static const struct ListMenuItem sDebugMenuItems[] =
