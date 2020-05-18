@@ -1781,23 +1781,33 @@ static bool8 Fishing5(struct Task *task)
 
     AlignFishingAnimationFrames();
     task->tFrameCounter++;
-    if (task->tFrameCounter >= 20)
+    if (gMain.newKeys & A_BUTTON)
     {
-        task->tFrameCounter = 0;
-        if (task->tNumDots >= task->tDotsRequired)
-        {
-            task->tStep++;
-            if (task->tRoundsPlayed != 0)
-                task->tStep++;
-            task->tRoundsPlayed++;
-        }
-        else
-        {
-            AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
-            task->tNumDots++;
-        }
+        task->tStep += 0;
+        if (task->tRoundsPlayed != 0)
+            task->tStep = FISHING_GOT_AWAY;
+        return FALSE;
     }
-    return FALSE;
+    else
+    {
+        if (task->tFrameCounter >= 20)
+        {
+            task->tFrameCounter = 0;
+            if (task->tNumDots >= task->tDotsRequired)
+            {
+                task->tStep++;
+                if (task->tRoundsPlayed != 0)
+                    task->tStep++;
+                task->tRoundsPlayed++;
+            }
+            else
+            {
+                AddTextPrinterParameterized(0, 1, dot, task->tNumDots * 8, 1, 0, NULL);
+                task->tNumDots++;
+            }
+        }
+        return FALSE;
+    }
 }
 
 // Determine if fish bites
@@ -1850,7 +1860,10 @@ static bool8 Fishing6(struct Task *task)
 // Oh! A Bite!
 static bool8 Fishing7(struct Task *task)
 {
+    AlignFishingAnimationFrames();
+    AddTextPrinterParameterized(0, 1, gText_OhABite, 0, 17, 0, NULL);
     task->tStep += 3;
+    task->tFrameCounter = 0;
     return FALSE;
 }
 
