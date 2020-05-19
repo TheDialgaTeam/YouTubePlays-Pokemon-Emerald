@@ -1783,7 +1783,7 @@ static bool8 Fishing5(struct Task *task)
     task->tFrameCounter++;
     if (gMain.newKeys & A_BUTTON)
     {
-        task->tStep += 0;
+        task->tStep = 5;
         if (task->tRoundsPlayed != 0)
             task->tStep = FISHING_GOT_AWAY;
         return FALSE;
