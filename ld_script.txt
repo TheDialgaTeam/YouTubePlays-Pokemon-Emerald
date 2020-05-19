@@ -332,7 +332,6 @@ SECTIONS {
         src/gym_leader_rematch.o(.text);
         src/unk_transition.o(.text);
         src/international_string_util.o(.text);
-        src/debug.o(.text);
     } =0
 
     script_data :
@@ -691,7 +690,6 @@ SECTIONS {
         data/mystery_event.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
-        src/debug.o(.rodata);
     } =0
 
     song_data :
@@ -1255,7 +1253,7 @@ SECTIONS {
         data/multiboot_berry_glitch_fix.o(.rodata);
         data/multiboot_pokemon_colosseum.o(.rodata);
     } =0
-
+    
     anim_mon_front_pic_data __anim_mon_load_address :
     ALIGN(4)
     {
@@ -1266,6 +1264,13 @@ SECTIONS {
     ALIGN(4)
     {
         src/graphics.o(.rodata);
+    } =0
+    
+    .text2 0x9000000 :
+    ALIGN(4)
+    {
+        src/debug.o(.text);
+        src/field_control_avatar_1.o(.text);
     } =0
 
     /* DWARF debug sections.
