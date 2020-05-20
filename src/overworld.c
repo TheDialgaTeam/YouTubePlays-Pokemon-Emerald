@@ -1440,16 +1440,19 @@ bool32 IsUpdateLinkStateCBActive(void)
         return FALSE;
 }
 
+extern void FieldGetPlayerInput_Patch(struct FieldInput* input, u16 newKeys, u16 heldKeys);
+extern int ProcessPlayerFieldInput_Patch(struct FieldInput* input);
+
 static void DoCB1_Overworld(u16 newKeys, u16 heldKeys)
 {
     struct FieldInput inputStruct;
 
     sub_808B578();
     FieldClearPlayerInput(&inputStruct);
-    FieldGetPlayerInput(&inputStruct, newKeys, heldKeys);
+    FieldGetPlayerInput_Patch(&inputStruct, newKeys, heldKeys);
     if (!ScriptContext2_IsEnabled())
     {
-        if (ProcessPlayerFieldInput(&inputStruct) == 1)
+        if (ProcessPlayerFieldInput_Patch(&inputStruct) == 1)
         {
             ScriptContext2_Enable();
             HideMapNamePopUpWindow();
