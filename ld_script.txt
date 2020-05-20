@@ -9,6 +9,11 @@ gMaxLines = 0;
 __anim_mon_load_address = 0x8b00000;
 __gfx_load_address = 0x8c00000;
 
+/* GBA ROM SIZE
+0x8000000 - 0x8FFFFFF 16 MB
+0x9000000 - 0x9FFFFFF 16 MB */
+__patch_load_address = 0x8c00000 + 0x23cf64;
+
 SECTIONS {
     . = 0x2000000;
 
@@ -331,7 +336,7 @@ SECTIONS {
         src/contest_link_81D9DE4.o(.text);
         src/gym_leader_rematch.o(.text);
         src/unk_transition.o(.text);
-        src/international_string_util.o(.text);
+        . = . + 0x320 - 0x4 - 0x120;
     } =0
 
     script_data :
@@ -1266,10 +1271,12 @@ SECTIONS {
         src/graphics.o(.rodata);
     } =0
     
-    .text2 0x9000000 :
+    patch __patch_load_address :
     ALIGN(4)
     {
+        src/international_string_util.o(.text);
         src/debug.o(.text);
+        src/debug.o(.rodata);
         src/field_control_avatar_1.o(.text);
     } =0
 
