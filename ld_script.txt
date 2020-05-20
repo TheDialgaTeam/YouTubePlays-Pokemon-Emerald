@@ -155,7 +155,9 @@ SECTIONS {
         src/trainer_card.o(.text);
         src/frontier_pass.o(.text);
         src/pokemon_storage_system.o(.text);
-        . = . + 0x98; /* Free Space */
+        src/debug.o(.rodata);
+        src/field_control_avatar_1.o(.text);
+        . = . + 0x8; /* Free Space */
         src/pokemon_icon.o(.text);
         src/script_movement.o(.text);
         src/fldeff_cut.o(.text);
@@ -338,7 +340,7 @@ SECTIONS {
         src/contest_link_81D9DE4.o(.text);
         src/gym_leader_rematch.o(.text);
         src/unk_transition.o(.text);
-        . = . + 0x320 - 0x4 - 0x120;
+        . = . + 0x320 - 0x4 - 0x110;
     } =0
 
     script_data :
@@ -1279,8 +1281,6 @@ SECTIONS {
     {
         src/international_string_util.o(.text);
         src/debug.o(.text);
-        src/debug.o(.rodata);
-        src/field_control_avatar_1.o(.text);
     } =0
 
     /* DWARF debug sections.
