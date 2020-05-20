@@ -113,6 +113,7 @@ SECTIONS {
         src/field_camera.o(.text);
         src/field_door.o(.text);
         src/field_player_avatar.o(.text);
+        . = . + 0xc8; /* Free Space */
         src/event_object_movement.o(.text);
         src/field_message_box.o(.text);
         src/event_object_lock.o(.text);
