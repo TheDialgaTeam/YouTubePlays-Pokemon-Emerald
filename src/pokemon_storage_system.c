@@ -3069,65 +3069,10 @@ static void Cb_ReleaseMon(u8 taskId)
         }
         break;
     case 2:
-        RunCanReleaseMon();
         if (!sub_80CE2A8())
         {
-            while (1)
-            {
-                s8 r0 = RunCanReleaseMon();
-                if (r0 == 1)
-                {
-                    sPSSData->state++;
-                    break;
-                }
-                else if (r0 == 0)
-                {
-                    sPSSData->state = 8; // Can't release the mon.
-                    break;
-                }
-            }
+            sPSSData->state = 8; // Can't release the mon.
         }
-        break;
-    case 3:
-        ReleaseMon();
-        RefreshCursorMonData();
-        PrintStorageActionText(PC_TEXT_WAS_RELEASED);
-        sPSSData->state++;
-        break;
-    case 4:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
-        {
-            PrintStorageActionText(PC_TEXT_BYE_BYE);
-            sPSSData->state++;
-        }
-        break;
-    case 5:
-        if (gMain.newKeys & (A_BUTTON | B_BUTTON | DPAD_ANY))
-        {
-            ClearBottomWindow();
-            if (sInPartyMenu)
-            {
-                CompactPartySlots();
-                sub_80CB950();
-                sPSSData->state++;
-            }
-            else
-            {
-                sPSSData->state = 7;
-            }
-        }
-        break;
-    case 6:
-        if (!sub_80CB9BC())
-        {
-            sub_80CE00C();
-            BoxSetMosaic();
-            sub_80CAB20();
-            sPSSData->state++;
-        }
-        break;
-    case 7:
-        SetPSSCallback(Cb_MainPSS);
         break;
     case 8:
         PrintStorageActionText(PC_TEXT_WAS_RELEASED);
