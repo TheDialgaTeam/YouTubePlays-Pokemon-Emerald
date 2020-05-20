@@ -149,6 +149,7 @@ SECTIONS {
         src/trainer_card.o(.text);
         src/frontier_pass.o(.text);
         src/pokemon_storage_system.o(.text);
+        . = . + 0x98; /* Free Space */
         src/pokemon_icon.o(.text);
         src/script_movement.o(.text);
         src/fldeff_cut.o(.text);
