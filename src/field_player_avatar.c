@@ -1809,10 +1809,10 @@ static bool8 Fishing_ShowDots(struct Task *task)
     task->tFrameCounter++;
     if (JOY_NEW(A_BUTTON))
     {
-        task->tStep = FISHING_NO_BITE;
+        task->tStep = 4;
         if (task->tRoundsPlayed != 0)
             task->tStep = FISHING_GOT_AWAY;
-        return TRUE;
+        return FALSE;
     }
     else
     {
@@ -1878,7 +1878,7 @@ static bool8 Fishing_GotBite(struct Task *task)
 {
     AlignFishingAnimationFrames();
     AddTextPrinterParameterized(0, FONT_NORMAL, gText_OhABite, 0, 17, 0, NULL);
-    task->tStep++;
+    task->tStep += 3;
     task->tFrameCounter = 0;
     return FALSE;
 }
