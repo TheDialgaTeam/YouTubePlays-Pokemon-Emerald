@@ -1732,7 +1732,7 @@ void BagMenu_ConfirmToss(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_ThrewAwayVar2Var1s);
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     BagMenu_Print(1, 1, gStringVar4, 3, 1, 0, 0, 0, 0);
-    gTasks[taskId].func = Task_ActuallyToss;
+    gTasks[taskId].func = ItemUseOutOfBattle_CannotUse;
 }
 
 void Task_ActuallyToss(u8 taskId)
