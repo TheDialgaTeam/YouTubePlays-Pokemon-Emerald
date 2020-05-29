@@ -1466,8 +1466,8 @@ static void ItemStorage_DoItemToss(u8 taskId)
 
 static void ItemStorage_TossItemYes(u8 taskId)
 {
-    ItemStorage_PrintMessage(ItemStorage_GetMessage(MSG_THREW_AWAY_ITEM));
-    gTasks[taskId].func = ItemStorage_HandleRemoveItem;
+    ItemStorage_PrintMessage(ItemStorage_GetMessage(MSG_TOO_IMPORTANT));
+    gTasks[taskId].func = ItemStorage_HandleErrorMessageInput;
 }
 
 static void ItemStorage_TossItemNo(u8 taskId)

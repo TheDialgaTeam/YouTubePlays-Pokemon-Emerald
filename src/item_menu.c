@@ -1877,7 +1877,7 @@ static void ConfirmToss(u8 taskId)
     StringExpandPlaceholders(gStringVar4, gText_ThrewAwayVar2Var1s);
     FillWindowPixelBuffer(WIN_DESCRIPTION, PIXEL_FILL(0));
     BagMenu_Print(WIN_DESCRIPTION, FONT_NORMAL, gStringVar4, 3, 1, 0, 0, 0, COLORID_NORMAL);
-    gTasks[taskId].func = Task_RemoveItemFromBag;
+    gTasks[taskId].func = ItemMenu_UseOutOfBattle;
 }
 
 // Remove selected item(s) from the bag and update list
