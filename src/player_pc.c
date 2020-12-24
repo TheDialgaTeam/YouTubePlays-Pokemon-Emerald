@@ -1397,8 +1397,8 @@ static void ItemStorage_DoItemToss(u8 taskId)
 
 static void ItemStorage_ResumeInputFromYesToss(u8 taskId)
 {
-    ItemStorage_PrintItemPcResponse(ItemStorage_GetItemPcResponse(ITEMPC_THREW_AWAY_ITEM));
-    gTasks[taskId].func = ItemStorage_HandleRemoveItem;
+    ItemStorage_PrintItemPcResponse(ItemStorage_GetItemPcResponse(ITEMPC_TOO_IMPORTANT));
+    gTasks[taskId].func = ItemStorage_WaitPressHandleResumeProcessInput;
 }
 
 static void ItemStorage_ResumeInputFromNoToss(u8 taskId)
